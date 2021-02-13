@@ -23,7 +23,7 @@ router.post('/', async (req: Request, res: Response) => {
         const saveData = await data.save();
         res.json(saveData);
     } catch (error) {
-        res.json({ message: error });
+        res.json({ message: error })
     }
 });
 

@@ -1,5 +1,6 @@
 import cors from "cors"
-import express, { Response } from "express"
+import express from "express"
+import member from './routes/member'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
@@ -12,10 +13,9 @@ const main = async () => {
         credentials: true
     }))
 
-    // app.use('/member', member)
-    app.get('/', (_, res: Response) => {
-        res.json({ greeting: "hello world" })
-    })
+    app.use(express.json())
+
+    app.use('/member', member)
 
     mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
         console.log('Database Connected');

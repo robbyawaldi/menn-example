@@ -14,18 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
-require("dotenv");
+const member_1 = __importDefault(require("./routes/member"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.use(cors_1.default({
         origin: "*",
         credentials: true
     }));
-    app.get('/', (_, res) => {
-        res.json({ greeting: "hello world" });
+    app.use(express_1.default.json());
+    app.use('/member', member_1.default);
+    mongoose_1.default.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+        console.log('Database Connected');
     });
-    app.listen(process.env.PORT, () => {
-        console.log("server started");
+    app.listen(parseInt(process.env.PORT), () => {
+        console.log("server started on port " + process.env.PORT);
     });
 });
 main().catch((err) => {
