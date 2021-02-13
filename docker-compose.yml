@@ -6,9 +6,18 @@ services:
     build: 
       context: .
       dockerfile: api-server.dockerfile
-    # ports: 
-    #   - 4000:4000
     depends_on: 
+      - db
+    networks: 
+      - mern-app
+
+  web:
+    container_name: mern_web
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    depends_on: 
+      - api
       - db
     networks: 
       - mern-app
@@ -19,7 +28,7 @@ services:
     depends_on: 
       - db
       - api
-    # user: www-data
+      - web
     volumes: 
       - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
     ports:
