@@ -1,0 +1,44 @@
+version: '3'
+
+services: 
+  api:
+    container_name: mern_api
+    build: 
+      context: .
+      dockerfile: api-server.dockerfile
+    # ports: 
+    #   - 4000:4000
+    depends_on: 
+      - db
+    networks: 
+      - mern-app
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: mern_nginx
+    depends_on: 
+      - db
+      - api
+    # user: www-data
+    volumes: 
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    networks: 
+      - mern-app
+
+  db:
+    container_name: mern_db
+    image: mongo
+    volumes: 
+      - mongo-data:/data/db
+    networks: 
+      - mern-app
+
+networks: 
+  mern-app:
+    driver: bridge
+
+volumes: 
+  mongo-data:
+    driver: local

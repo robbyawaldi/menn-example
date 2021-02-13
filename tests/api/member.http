@@ -1,4 +1,4 @@
-POST http://localhost:8080/member HTTP/1.1
+POST http://localhost/member HTTP/1.1
 content-type: application/json
 
 {

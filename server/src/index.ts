@@ -15,7 +15,7 @@ const main = async () => {
 
     app.use(express.json())
 
-    app.use('/member', member)
+    app.use('/api/member', member)
 
     mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
         console.log('Database Connected');
