@@ -1,0 +1,22 @@
+version: '3'
+
+services: 
+  be:
+    container_name: mern_be
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - 8080:8080
+    depends_on: 
+      - db
+
+  db:
+    container_name: mern_db
+    image: mongo:latest
+    environment: 
+      - MONGO_INITDB_DATABASE=tomato
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=zxcasd
+    volumes: 
+      - ./mongo-volume:/data/db
