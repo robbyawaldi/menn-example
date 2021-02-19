@@ -1,0 +1,17 @@
+.focus {
+    @apply bg-blue-200 rounded-md overflow-hidden;
+}
+
+.cell > div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 2.5rem;
+    letter-spacing: normal;
+    user-select: none;
+}
+
+.cell {
+    cursor: default;
+    width: 210px;
+    height: 2.5em;
+}

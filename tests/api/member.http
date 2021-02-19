@@ -1,28 +1,28 @@
-POST http://localhost/member HTTP/1.1
+POST http://localhost/api/member HTTP/1.1
 content-type: application/json
 
 {
     "fullname": "robby awaldi",
-    "email": "robbyawaldi@gmail.com",
-    "password": "zxcasd"
+    "email": "robbyawaldi@gmail.com"
 }
 
 ###
-GET http://localhost:8080/member HTTP/1.1
+GET http://localhost/api/member HTTP/1.1
 content-type: application/json
 
 ###
-GET http://localhost:8080/member/602740e98faba807009f0383 HTTP/1.1
+GET http://localhost/api/member/602740e98faba807009f0383 HTTP/1.1
 content-type: application/json
 
 ###
-DELETE http://localhost:8080/member/602740e98faba807009f0383 HTTP/1.1
+DELETE http://localhost/api/member/602f3960e0002697e382b842 HTTP/1.1
 content-type: application/json
 
 ###
-PATCH http://localhost:8080/member/602743c91fd6672cf470df79 HTTP/1.1
+PATCH http://localhost/api/member/60278f2899dc0813d02c898a HTTP/1.1
 content-type: application/json
 
 {
-    "email": "robbyawaldi.mtech@gmail.com"
+    "fullname": "robby awaldi",
+    "email": "robbyawaldi@gmail.com"
 }

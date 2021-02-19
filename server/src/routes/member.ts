@@ -16,8 +16,7 @@ router.get('/', async (_: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
     const data = new member({
         fullname: req.body.fullname,
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email
     });
     try {
         const saveData = await data.save();
@@ -49,14 +48,9 @@ router.delete('/:dataID', async (req: Request, res: Response) => {
 
 //UPDATE DATA
 router.patch('/:dataID', async (req: Request, res: Response) => {
+    console.log(req.body)
     try {
-        const dataUpdate = await member.updateOne({ _id: req.params.dataID }, {
-            $set: {
-                fullname: req.body.fullname,
-                email: req.body.email,
-                password: req.body.password
-            }
-        });
+        const dataUpdate = await member.updateOne({ _id: req.params.dataID }, { ...req.body }, { upsert: true });
         res.json(dataUpdate);
     } catch (error) {
         res.json({ message: error });
